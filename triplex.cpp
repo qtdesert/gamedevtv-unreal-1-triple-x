@@ -17,5 +17,5 @@ int main()
     std::cout << sum << std::endl;
     std::cout << product << std::endl << std::endl;
 
-return 0;
+    return 0;
 }
