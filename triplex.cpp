@@ -7,8 +7,8 @@ int main()
     std::cout << "You need to enter the correct codes to continue....\n";
 
     const int CodeA = 4;
-    const int CodeB = 7;
-    const int CodeC = 9;
+    const int CodeB = 5;
+    const int CodeC = 7;
 
     const int CodeSum = CodeA + CodeB + CodeC;
     const int CodeProduct = CodeA * CodeB * CodeC;
@@ -25,6 +25,15 @@ int main()
 
     int GuessSum = GuessA + GuessB + GuessC;
     int GuessProduct = GuessA * GuessB * GuessC;
+
+    if (GuessSum == CodeSum && GuessProduct && CodeProduct)
+    {
+        std::cout << "You broke the code! The space station is now open." << std::endl;
+    }
+    else
+    {
+        std::cout << "Wrong code! The space station is still closed." << std::endl;
+    }
 
     std::cout << std::endl;
     return 0;
