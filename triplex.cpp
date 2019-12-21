@@ -1,9 +1,28 @@
 #include <iostream>
 
-int main()
+void PrintIntroduction()
 {
-    std::cout << "You are a galaxy smuggler breaking into a secure server room to break into a space station.\n";
+    std::cout << "\n   +--------------+\n";
+    std::cout << "   |.------------.|\n";
+    std::cout << "   ||            ||\n";
+    std::cout << "   ||            ||\n";
+    std::cout << "   ||            ||\n";
+    std::cout << "   ||            ||\n";
+    std::cout << "   |+------------+|\n";
+    std::cout << "   +-..--------..-+\n";
+    std::cout << "   .--------------.\n";
+    std::cout << "  / /============\\ \\\n";
+    std::cout << " / /==============\\ \\\n";
+    std::cout << "/____________________\\\n";
+    std::cout << "\\____________________/\n";
+
+    std::cout << "\nYou are a galaxy smuggler breaking into a secure server room to break into a space station.\n";
     std::cout << "You need to enter the correct codes to continue....\n\n";
+}
+
+bool PlayGame()
+{
+    PrintIntroduction();
 
     const int CodeA = 4;
     const int CodeB = 5;
@@ -25,13 +44,25 @@ int main()
 
     if (GuessSum == CodeSum && GuessProduct && CodeProduct)
     {
-        std::cout << "You broke the code! The space station is now open.\n";
+        std::cout << "\nYou broke the code!\n";
+        return true;
     }
     else
     {
-        std::cout << "Wrong code! The space station is still closed.\n";
+        std::cout << "\nWrong code!\n";
+        return false;
     }
 
     std::cout << std::endl;
+}
+
+int main()
+{
+    while (true)
+    {
+        bool bLevelComplete = PlayGame();
+        std::cin.clear();
+        std::cin.ignore();
+    }
     return 0;
 }
