@@ -1,6 +1,7 @@
 #include <iostream>
+#include <ctime>
 
-void PrintIntroduction()
+void PrintIntroduction(int Difficulty)
 {
     std::cout << "\n   +--------------+\n";
     std::cout << "   |.------------.|\n";
@@ -16,17 +17,18 @@ void PrintIntroduction()
     std::cout << "/____________________\\\n";
     std::cout << "\\____________________/\n";
 
-    std::cout << "\nYou are a galaxy smuggler breaking into a secure server room to break into a space station.\n";
+    std::cout << "\nYou are a galaxy smuggler breaking into a level " << Difficulty;
+    std::cout << " secure server room to break into a space station.\n";
     std::cout << "You need to enter the correct codes to continue....\n\n";
 }
 
-bool PlayGame()
+bool PlayGame(int Difficulty)
 {
-    PrintIntroduction();
+    PrintIntroduction(Difficulty);
 
-    const int CodeA = 4;
-    const int CodeB = 5;
-    const int CodeC = 7;
+    const int CodeA = rand() % Difficulty + Difficulty;
+    const int CodeB = rand() % Difficulty + Difficulty;
+    const int CodeC = rand() % Difficulty + Difficulty;
 
     const int CodeSum = CodeA + CodeB + CodeC;
     const int CodeProduct = CodeA * CodeB * CodeC;
@@ -44,12 +46,12 @@ bool PlayGame()
 
     if (GuessSum == CodeSum && GuessProduct && CodeProduct)
     {
-        std::cout << "\nYou broke the code!\n";
+        std::cout << "\n*** You broke the code! Keep going. ***\n";
         return true;
     }
     else
     {
-        std::cout << "\nWrong code!\n";
+        std::cout << "\n*** Wrong code! Try again. ***\n";
         return false;
     }
 
@@ -58,11 +60,22 @@ bool PlayGame()
 
 int main()
 {
-    while (true)
+    srand(time(NULL));
+
+    int LevelDifficulty = 1;
+    int const MaxDifficulty = 5;
+    
+    while (LevelDifficulty <= MaxDifficulty)
     {
-        bool bLevelComplete = PlayGame();
+        bool bLevelComplete = PlayGame(LevelDifficulty);
         std::cin.clear();
         std::cin.ignore();
+
+        if (bLevelComplete)
+        {
+            ++LevelDifficulty;
+        }
     }
+    std::cout << "\n*** Great work, you broke all the codes. ***\n";
     return 0;
 }
